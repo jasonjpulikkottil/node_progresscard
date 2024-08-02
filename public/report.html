@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Include html2pdf.js via CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.4/html2pdf.bundle.min.js"></script>
+
+  <style>
+    body {
+      font-family: 'Jost';
+      background: #f7f7f7;
+    }
+
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td,
+    th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 10px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #e8effc;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .for_container {
+      width: 98%;
+      margin: 0px auto;
+    }
+
+    tr th {
+      background: #259fd9;
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="for_container">
+    <h2 class="text-center">PROGRESS REPORT</h2>
+    <h2 class="text-center">
+      <span>Name : {{studentName}}</span> &nbsp;&nbsp; || &nbsp;&nbsp; <span>Standard : {{className}}</span>
+      &nbsp;&nbsp; || &nbsp;&nbsp;<span>Section : A</span>
+    </h2>
+    <br />
+    <a href="/pdf/{{studentId}}" class="btn btn-success btn-small">Download</a>
+    <table>
+      <tr>
+        <th>Subjects</th>
+        <th>Maxi. Marks</th>
+        <th>Mini. Marks</th>
+        <th>1st Mid Term</th>
+        <th>Quarterly</th>
+        <th>2nd Mid Term</th>
+        <th>Half Yearly</th>
+        <th>3rd Mid Term</th>
+        <th>Annual</th>
+        <th>Remarks</th>
+      </tr>
+      {{tableRows}}
+    </table>
+  </div>
+</body>
+<script>
+
+document.addEventListener('DOMContentLoaded', () => {
+    const downloadBtn = document.getElementById('download-pdf');
+
+    downloadBtn.addEventListener('click', () => {
+      const element = document.body; // You can specify any element you want
+
+      html2pdf()
+        .from(element)
+        .save();
+    });
+  });
+  
+  </script>
+
+
+</html>
